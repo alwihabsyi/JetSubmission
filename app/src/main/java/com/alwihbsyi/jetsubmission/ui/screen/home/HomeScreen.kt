@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.alwihbsyi.jetsubmission.data.entity.ArticleEntity
 import com.alwihbsyi.jetsubmission.di.Injection
@@ -25,7 +25,7 @@ fun HomeScreen(
     ),
     navigateToDetail: (String) -> Unit
 ) {
-    viewModel.uiState.collectAsState(initial = UiState.Loading).value.let {
+    viewModel.uiState.collectAsStateWithLifecycle(UiState.Loading).value.let {
         when (it) {
             is UiState.Loading -> {
                 viewModel.getAllArticles(LocalContext.current)

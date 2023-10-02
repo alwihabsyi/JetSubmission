@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -19,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.alwihbsyi.jetsubmission.R
 import com.alwihbsyi.jetsubmission.data.entity.ArticleEntity
@@ -35,7 +35,7 @@ fun BookmarkScreen(
     ),
     navigateToDetail: (String) -> Unit
 ) {
-    viewModel.uiState.collectAsState(initial = UiState.Loading).value.let {
+    viewModel.uiState.collectAsStateWithLifecycle(UiState.Loading).value.let {
         when (it) {
             is UiState.Loading -> {
                 viewModel.getSavedArticles()

@@ -22,7 +22,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import com.alwihbsyi.jetsubmission.di.Injection
@@ -59,7 +59,7 @@ fun DetailScreen(
 ) {
     var isArticleSaved by remember { mutableStateOf(false) }
 
-    viewModel.userSaved.collectAsState(UiState.Loading).value.let {
+    viewModel.userSaved.collectAsStateWithLifecycle(UiState.Loading).value.let {
         when (it) {
             is UiState.Loading -> {
                 viewModel.getSavedArticleById(title)
@@ -75,7 +75,7 @@ fun DetailScreen(
         }
     }
 
-    viewModel.uiState.collectAsState(UiState.Loading).value.let {
+    viewModel.uiState.collectAsStateWithLifecycle(UiState.Loading).value.let {
         when (it) {
             is UiState.Loading -> {
                 viewModel.getArticleById(LocalContext.current, title)
