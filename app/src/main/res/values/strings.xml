@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">JetSubmission</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_bookmark">Bookmark</string>
+    <string name="menu_profile">Profile</string>
+    <string name="name">Alwi</string>
+    <string name="email">alwihbsyi.ah@gmail.com</string>
+    <string name="no_data_saved">Belum ada data yang disimpan</string>
+    <string name="action_detail">Lihat Selengkapnya</string>
+</resources>
